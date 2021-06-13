@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
@@ -36,14 +37,30 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'nombre' => 'required',
-            'desc' => 'required'
+            'desc' => 'required',
+            'precio' => 'required',
+            'imgpath' => 'image'
         ]);
+
+        if ($request->File('imgpath')) {
+
+            $URL = Storage::disk('uploads')->put('images', $request->file('imgpath'));
+
+            $name = basename($URL);
+
+            $request = new Request($request->all());
+
+            $request->merge([
+                'imgpath' => $name,
+            ]);
+        }
 
         $producto = Producto::create($request->all());
 
-        return redirect() -> route('producto.edit', $producto);
+        return redirect()->route('producto.edit', $producto)->with('info', 'El producto se creó correctamente');
     }
 
     /**
@@ -77,7 +94,36 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        //
+
+        $request->validate([
+            'nombre' => 'required',
+            'desc' => 'required',
+            'precio' => 'required'
+        ]);
+
+        if ($request->File('imgpath')) {
+
+            $URL = Storage::disk('uploads')->put('images', $request->file('imgpath'));
+
+            $name = basename($URL);
+
+            $request = new Request($request->all());
+
+            $request->merge([
+                'imgpath' => $name,
+            ]);
+
+            $imgname = 'images/';
+            $imgname .= $producto->imgpath;
+
+            if ($imgname != 'default.png') {
+                Storage::disk('uploads')->delete($imgname);
+            }
+        }
+
+        $producto->update($request->all());
+
+        return redirect()->route('producto.edit', $producto)->with('info', 'El producto se actualizó correctamente');
     }
 
     /**
@@ -88,6 +134,15 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+        $producto->delete();
+
+        $imgname = 'images/';
+        $imgname .= $producto->imgpath;
+
+        if ($imgname != 'default.png') {
+            Storage::disk('uploads')->delete($imgname);
+        }
+
+        return redirect()->route('producto.index', $producto)->with('info', 'El producto se eliminó correctamente');
     }
 }

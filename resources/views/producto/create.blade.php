@@ -10,7 +10,7 @@
     <p>Crear producto</p>
     <div class="card">
         <div class="card-body">
-            {!! Form::open(['route' => 'producto.store']) !!}
+            {!! Form::open(['route' => 'producto.store', 'files' => true]) !!}
                 <div class="form-group">
                     {!! Form::label('nombre', 'Nombre') !!}
                     {!! Form::text('nombre', null, ['class' => 'form-control','placeholder' => 'Ingresa nombre del producto']) !!}
@@ -33,7 +33,7 @@
 
                 <div class="form-group">
                     {!! Form::label('precio', 'Precio') !!}
-                    {!! Form::number('precio', null, ['class' => 'form-control','step' => '0.1']) !!}
+                    {!! Form::number('precio', null, ['class' => 'form-control','step' => 'any']) !!}
 
                     @error('precio')
                         <span class = "text-danger">{{$message}}</span>
@@ -43,8 +43,9 @@
 
                <div class="form-group">
                     {!! Form::label('imgpath', 'Imagen') !!}
-                    {!! Form::file('imgpath', null, ['class' => 'form-control']) !!}
-
+                    <br>
+                    {!! Form::file('imgpath', ['class' => 'form-control-file','accept' => 'image/*']) !!}
+                    
                     @error('imgpath')
                         <span class = "text-danger">{{$message}}</span>
                     @enderror
