@@ -1,3 +1,8 @@
+@if((Auth::user()->usertype)!=0)
+    <script>
+    window.location = "/";
+  </script>
+@endif
 @extends('adminlte::page')
 
 @section('title', 'Administrador')
@@ -8,6 +13,9 @@
 
 @section('content')
 <p>Lista de productos</p>
+
+
+
 
 <div class="card">
 

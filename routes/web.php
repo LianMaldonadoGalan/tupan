@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\NewsletterController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Producto;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +16,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
 Route::resource('producto', ProductoController::class);
+
+Route::resource('newsuser', NewsletterController::class);
+
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::get('blog', function () {
+    $producto = Producto::all()->random(3);
+    return view('blog',compact('producto'));
+});
+
+Route::get('nosotros', function () {
+    return view('acerca');
+})->middleware('verified');
+
+Route::get('contacto', function () {
+    return view('contacto');
+});
+
+Route::get('recetas', function () {
+    $producto = Producto::all();
+    return view('recetas' , compact('producto'));
+});
+
+Route::post('newsletter',  [NewsletterController::class, 'create']);
+
