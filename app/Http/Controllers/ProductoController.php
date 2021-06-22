@@ -15,7 +15,10 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $producto = Producto::all();
+        $producto = Producto::with('categoria')->get();
+
+        //dd($producto->toArray());
+
         return view('producto.index', compact('producto'));
     }
 
@@ -94,7 +97,6 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-
         $request->validate([
             'nombre' => 'required',
             'desc' => 'required',
@@ -145,4 +147,5 @@ class ProductoController extends Controller
 
         return redirect()->route('producto.index', $producto)->with('info', 'El producto se eliminó correctamente');
     }
+
 }

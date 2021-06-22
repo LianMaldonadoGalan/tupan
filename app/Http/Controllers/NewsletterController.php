@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\newsletteruser;
+use App\Models\Newsletter;
+use Illuminate\Support\Facades\DB;
+
 
 class NewsletterController extends Controller
 {
@@ -14,7 +16,9 @@ class NewsletterController extends Controller
      */
     public function index()
     {
-        //
+        $newsletter = Newsletter::all();
+
+        return view('newsletter.index' , compact('newsletter'));
     }
 
     /**
@@ -29,7 +33,7 @@ class NewsletterController extends Controller
             'email' => 'required|email|unique:newsletter,email'
         ]);
 
-        $user = new newsletteruser;
+        $user = new Newsletter;
         $user->email = $req->email;
 
         $user->save();
@@ -77,9 +81,11 @@ class NewsletterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        DB::table('newsletter')->where('id', $id)->update(array('enabled' => 0));
+
+        return redirect()->route('newsletter.index')->with('info', 'El usuario se deshabilito correctamente');
     }
 
     /**
@@ -90,6 +96,11 @@ class NewsletterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Newsletter::find($id);
+        $user->delete();
+
+        return redirect()->route('newsletter.index',$user)->with('info', 'El usuario se eliminó correctamente');
     }
+
+    
 }

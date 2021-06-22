@@ -18,6 +18,8 @@ class CreateProductosTable extends Migration
             $table->string('nombre',100);
             $table->string('desc',250);
             $table->float('precio', 8, 2);
+            $table->unsignedBigInteger('categoria_id')->nullable()->default(1);
+            $table->foreign('categoria_id')->references('id')->on('categoriaprod')->onDelete('set null');
             $table->string('imgpath',50);
             $table->timestamps();
         });

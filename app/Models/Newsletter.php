@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class newsletteruser extends Model
+class Newsletter extends Model
 {
     use HasFactory;
 
+    use SoftDeletes;
+
     protected $table = 'newsletter';
 
-    protected $fillable = ['email'];
+    protected $fillable = ['email','enabled'];
 }

@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\api\JsonController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\NewsletterController;
+use App\Models\Newsletter;
+use App\Models\newsletteruser;
 use Illuminate\Support\Facades\Route;
 use App\Models\Producto;
 
@@ -26,7 +29,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::resource('producto', ProductoController::class);
 
-Route::resource('newsuser', NewsletterController::class);
+Route::resource('newsletter', NewsletterController::class);
 
 Route::get('/', function () {
     return view('index');
@@ -50,5 +53,11 @@ Route::get('recetas', function () {
     return view('recetas' , compact('producto'));
 });
 
-Route::post('newsletter',  [NewsletterController::class, 'create']);
+
+/*
+Route::post('newsletter',  [NewsletterController::class, 'create' , 'destroy']);
+
+Route::get('newsletter',  [NewsletterController::class, 'index' , 'destroy']);*/
+
+Route::get('jsonproductos', [JsonController::class, 'jsonproductos']);
 

@@ -41,6 +41,7 @@
                     <th>NOMBRE</th>
                     <th>DESCRIPCION</th>
                     <th>PRECIO</th>
+                    <th>CATEGORIA</th>
                     <th>EDITAR</th>
                     <th>ELIMINAR</th>
                 </tr>
@@ -53,9 +54,10 @@
 
                     </td>
                     <td>{{$product->id}}</td>
-                    <td>{{$product->nombre}}</td>
+                    <td><a href="{{route('producto.show', $product)}}">{{$product->nombre}}</a></td>
                     <td>{{$product->desc}}</td>
                     <td>${{$product->precio}}</td>
+                    <td>{{$product->categoria->nombre}}</td>
                     <td width="10px">
                         <a class="btn btn-primary btn-sm" href="{{route('producto.edit', $product)}}">Editar</a>
                     </td>

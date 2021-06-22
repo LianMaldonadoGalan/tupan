@@ -111,7 +111,7 @@
                                         <li class=" button_user hidden fixed ">
                                             @auth
                                             @if ((Auth::user()->usertype)==0)
-                                            <a class="nav-link" href="{{ url('/admin') }}">Dashboard</a>
+                                            <a class="nav-link" href="{{ url('/admin/productos') }}">Dashboard</a>
                                             @endif
                                             @else
                                         <li class="button_user hidden fixed "><a class="button active" href="{{ route('login') }}">Login</a></li>
