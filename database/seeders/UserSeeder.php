@@ -27,6 +27,5 @@ class UserSeeder extends Seeder
          'two_factor_secret' => null, 'two_factor_recovery_codes' => null,
          'usertype' => 0, 'remember_token' => null, 'current_team_id' => null, 'profile_photo_path' => null,
         'created_at' => '2021-06-18 21:55:09', 'updated_at' => '2021-06-18 21:55:38',]);
-        
     }
 }
