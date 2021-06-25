@@ -3,8 +3,8 @@
 use App\Http\Controllers\api\JsonController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\NewsletterController;
-use App\Models\Newsletter;
-use App\Models\newsletteruser;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use App\Models\Producto;
 
@@ -19,9 +19,21 @@ use App\Models\Producto;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -32,7 +44,9 @@ Route::resource('producto', ProductoController::class);
 Route::resource('newsletter', NewsletterController::class);
 
 Route::get('/', function () {
-    return view('index');
+    $producto = Producto::all();
+    $productorandom = Producto::all()->random(3);
+    return view('index',compact('producto'),compact('productorandom'));
 });
 
 Route::get('blog', function () {
@@ -54,10 +68,7 @@ Route::get('recetas', function () {
 });
 
 
-/*
-Route::post('newsletter',  [NewsletterController::class, 'create' , 'destroy']);
 
-Route::get('newsletter',  [NewsletterController::class, 'index' , 'destroy']);*/
 
 Route::get('jsonproductos', [JsonController::class, 'jsonproductos']);
 

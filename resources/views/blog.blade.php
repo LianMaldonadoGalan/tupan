@@ -32,7 +32,7 @@
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mar_bottom">
         <div class="blog_box">
           <div class="blog_img_box">
-            <figure><img src="{{asset('images/'.$producto[0]->imgpath) }}" alt="{{$producto[0]->nombre}}" width="370" height="340"/>
+            <figure><img src="{{asset('images/'.$producto[0]->imgpath) }}" alt="{{$producto[0]->nombre}}" style="width:370px;height:340px;"/>
              <span>{{substr($producto[0]->updated_at, 0,-8)}}</span>
             </figure>
           </div>
@@ -43,7 +43,7 @@
        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mar_bottom">
         <div class="blog_box">
           <div class="blog_img_box">
-          <figure><img src="{{asset('images/'.$producto[1]->imgpath) }}" alt="{{$producto[1]->nombre}}" width="370" height="340"/>
+          <figure><img src="{{asset('images/'.$producto[1]->imgpath) }}" alt="{{$producto[1]->nombre}}" style="width:370px;height:340px;"/>
              <span>{{substr($producto[1]->updated_at, 0,-8)}}</span>
             </figure>
           </div>
@@ -54,7 +54,7 @@
        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
         <div class="blog_box">
           <div class="blog_img_box">
-          <figure><img src="{{asset('images/'.$producto[2]->imgpath) }}" alt="{{$producto[2]->nombre}}" width="370px" height="340px"/>
+          <figure><img src="{{asset('images/'.$producto[2]->imgpath) }}" alt="{{$producto[2]->nombre}}" style="width:370px;height:340px;"/>
              <span>{{substr($producto[2]->updated_at, 0,-8)}}</span>
             </figure>
           </div>

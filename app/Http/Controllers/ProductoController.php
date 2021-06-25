@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -29,7 +30,9 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('producto.create');
+        $categoria = Categoria::all();
+
+        return view('producto.create', compact('categoria'));
     }
 
     /**
@@ -85,7 +88,9 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        return view('producto.edit', compact('producto'));
+        $categoria = Categoria::all();
+
+        return view('producto.edit', compact('producto'), compact('categoria'));
     }
 
     /**
