@@ -42,6 +42,7 @@ Las principales características a implementar por el momento son:
     - LogIn/LogOut
     - Sessions
     - MiddleWare
+    - Gates
 - Validación:
     - Del lado de servidor
     - Por formulario

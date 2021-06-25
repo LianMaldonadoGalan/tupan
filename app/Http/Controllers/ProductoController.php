@@ -6,6 +6,7 @@ use App\Models\Producto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class ProductoController extends Controller
 {
@@ -16,6 +17,9 @@ class ProductoController extends Controller
      */
     public function index()
     {
+
+        Gate::authorize('auth-user');
+
         $producto = Producto::with('categoria')->get();
 
         //dd($producto->toArray());
@@ -30,6 +34,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
+        Gate::authorize('auth-user');
+
         $categoria = Categoria::all();
 
         return view('producto.create', compact('categoria'));
@@ -77,6 +83,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
+        Gate::authorize('auth-user');
         return view('producto.show', compact('producto'));
     }
 
@@ -88,6 +95,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
+        Gate::authorize('auth-user');
         $categoria = Categoria::all();
 
         return view('producto.edit', compact('producto'), compact('categoria'));
