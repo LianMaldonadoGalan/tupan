@@ -1,62 +1,84 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Proyecto: TuPan
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+Integrantes:
+Lian Uriel Maldonado Galan 219296172
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Programación para internet 2021A D12  
+Profesor: SAMUEL MERCADO GARIBAY  
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+30/06/2021
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Descripción:
 
-## Learning Laravel
+Este proyecto tiene como finalidad crear un sitio web para una panadería y por el mostrar los productos que se venden algunos de manera estática y otros de manera dinámica.
+Se simula que se quiere ir poco a poco implementar el negocio online para la venta de producto, pero por el momento basta con implementar ciertas funcionalidades en el sitio web para empezar a innovar en sus servicios.
+Se tiene pensado evolucionar el proyecto o sitio a futuro para implementar cada vez más y mejores módulos dentro de este, como podría ser venta en línea, registro de información de ventas, ampliar los modulos de productos, generar reportes de ventas, generar PDF para cliente, etc.
+Como por el momento solo se necesitan ciertas funcionalidades y no se cuenta con tanto presupuesto para cubrir todas las que se tienen planeadas a futuro, se eligieron las más básicas para empezar.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Las principales características a implementar por el momento son:  
 
-## Laravel Sponsors
+- **Sitio Web con informacion principal acerca de la panadería.**  
+- **Mostrar los productos de la base de datos.**  
+- **Que los usuarios se puedan registrar y loguear.**  
+- **Panel de administración (Para los productos por el momento).**
+- **Autenticación de usuario y tipos de usuario.**
+- **Registro de nuevos productos.**
+- **Mostrar informacion del producto.**
+- **Modificar la informacion del producto.**
+- **Eliminar productos.**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+## Funcionalidades del proyecto implementadas: 
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+- Almacenamiento de información en base de datos: 
+  - Migraciones
+  - Seeders
+  - Factories
+  - TimeStamps
+- Autenticación y autorización:
+    - LogIn/LogOut
+    - Sessions
+    - MiddleWare
+- Validación:
+    - Del lado de servidor
+    - Por formulario
+- UI
+    - Diseño responsivo (Bootstrap)
+    - Reutilizacion de elementos comunes (layouts)
+    - Mostrar logIn/logOut
+    - Mostrar errores de Validación
+    - Mostrar mensajes de éxito en los procesos
+    - Navegación (Menú)
+- ORM
+    - Modelos
+    - Se usan los modelos para las consultas en bases de datos
+- MVC
+    - Se implementó un CRUD para los productos
+- Relaciones
+    - Uno a muchos
+- Consulta, cración y eliminación de información
+    - SoftDeletes
+    - EagerLoading (para las relaciones)
+    - Accessors y Mutators al consultar o guardar
+- API
+    - API que devuelve la información de los productos en formato JSON
+- Archivos
+    - Carga de archivos
+    - Eliminación de archivos
+    - Mostrar archivos
+- Correo electrónico
+    - Correo de verificación
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Cosas a tomar en cuenta:
 
-## Code of Conduct
+- Solo los administradores pueden acceder al dashboard de administración
+- Para iniciar sesión como administrador: Correo: c@live.com Contraseña: password1234
+- Los correos de verificación se mandan a mailtrap (no se usa un servicio real como gmail por el momento)
+- Se tienen que correr las migraciones para tener productos en la base de datos, asi como los usuarios.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
